@@ -1,0 +1,24 @@
+.blog-card {
+  border: none;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 30px 75px rgba(15, 23, 42, 0.12);
+}
+
+.blog-card .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.blog-card .card-title {
+  color: #102a43;
+}
+
+.blog-card .card-text {
+  color: #475569;
+}

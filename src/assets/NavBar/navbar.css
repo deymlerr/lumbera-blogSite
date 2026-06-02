@@ -1,0 +1,30 @@
+.navbar {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.06);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #3f63f6 !important;
+}
+
+.navbar-brand:hover {
+  color: #3349c4 !important;
+}
+
+.navbar-nav .nav-link {
+  color: #334155 !important;
+  font-weight: 600;
+  padding: 0.65rem 0.8rem;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #3f63f6 !important;
+}
+
+.navbar-toggler {
+  border-color: rgba(99, 102, 241, 0.3);
+}
