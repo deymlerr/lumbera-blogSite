@@ -1,20 +1,12 @@
 <script setup>
 import { computed, onBeforeUnmount, ref } from "vue";
 import { useRouter } from "vue-router";
-import { Notyf } from "notyf";
+import { notyf } from "../notyf";
 import { useGlobalStore } from "../global";
 import api from "../api";
 import '../assets/main/style.css';
 
 const LOGIN_SUCCESS_DURATION = 2600;
-const notyf = new Notyf({
-  duration: LOGIN_SUCCESS_DURATION,
-  dismissible: true,
-  position: {
-    x: "right",
-    y: "top",
-  },
-});
 const router = useRouter();
 const { getUserDetails } = useGlobalStore();
 const email = ref("");
@@ -55,7 +47,7 @@ async function handleSubmit() {
 
       await wait(LOGIN_SUCCESS_DURATION);
       notyf.dismissAll();
-      router.push({ name: "Home" });
+      await router.push({ name: "Home" });
     }
   } catch (error) {
     if ([400, 401, 404].includes(error.response?.status)) {

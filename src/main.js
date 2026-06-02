@@ -8,6 +8,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import App from './App.vue'
 import api from "./api";
 import { useGlobalStore } from "./global";
+import { notyf } from "./notyf";
 
 // PUBLIC PAGES
 import Login from "./pages/Login.vue";
@@ -140,6 +141,11 @@ const router = createRouter({
         }
     ]
 })
+
+router.beforeEach((to, from, next) => {
+    notyf.dismissAll();
+    next();
+});
 
 const app = createApp(App)
 app.use(pinia)

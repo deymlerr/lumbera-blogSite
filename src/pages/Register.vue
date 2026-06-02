@@ -1,12 +1,12 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed, onBeforeUnmount, ref } from "vue";
 import { useRouter } from "vue-router";
-import { Notyf } from "notyf";
+import { notyf } from "../notyf";
 import api from "../api";
 import '../assets/main/style.css';
 
 const router = useRouter();
-const notyf = new Notyf();
+const SUCCESS_DURATION = 2600;
 
 const firstName = ref("");
 const lastName = ref("");
@@ -29,6 +29,14 @@ const isEnabled = computed(() => {
     password.value.length >= 8 &&
     password.value === confirmPass.value
   );
+});
+
+function wait(duration) {
+  return new Promise((resolve) => setTimeout(resolve, duration));
+}
+
+onBeforeUnmount(() => {
+  notyf.dismissAll();
 });
 
 async function handleSubmit() {
@@ -55,7 +63,9 @@ async function handleSubmit() {
       password.value = "";
       confirmPass.value = "";
 
-      router.push({ name: "Login" });
+      await wait(SUCCESS_DURATION);
+      notyf.dismissAll();
+      await router.push({ name: "Login" });
     } else {
       notyf.error("Registration Failed. Please contact administrator.");
     }
